@@ -5,14 +5,18 @@ import itertools
 import csv
 import pandas as pd
 import requests
+from get_api_key import get_env_variable
 
 
-def make_api_get_request(url, params=None, headers=None):
+
+def make_api_get_request(url, params=None):
     """
     Make a GET request to the specified API.
 
     Parameters:
     - url (str): The API endpoint URL.
+    - symbol (str): The crypto symbol (example - ETH)
+    - interval (str): Example - 1h
     - params (dict, optional): Query parameters to include in the request.
     - headers (dict, optional): Headers to include in the request.
 
@@ -20,7 +24,7 @@ def make_api_get_request(url, params=None, headers=None):
     - dict: JSON response from the API.
     """
     try:
-        response = requests.get(url, params=params, headers=headers)
+        response = requests.get(url, params=params)
 
         if response.status_code == 200:
             return response.json()
@@ -29,8 +33,8 @@ def make_api_get_request(url, params=None, headers=None):
     except requests.exceptions.RequestException as e:
         print(f"Error making API request: {e}")
 
-# Example usage:
-api_url = "https://jsonplaceholder.typicode.com/todos/1"
-response_data = make_api_get_request(api_url)
 
-print(response_data)
+
+
+
+
