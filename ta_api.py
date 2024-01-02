@@ -69,15 +69,15 @@ def get_price_of_one_crypto(symbol):
     return response
 
 
-def get_supertrend(symbol):
+def get_supertrend(symbol, period, multiplier):
     print ("Getting supertrend of " + str(symbol) + "\n")
     url = 'https://api.taapi.io/supertrend?'
     params = {
         'exchange': 'binance',
         'symbol': symbol,
         'interval': '15m',
-        'period': 10,
-        'multiplier': 3
+        'period': period,
+        'multiplier': multiplier
     }
 
     response = make_api_get_request(url=url, params=params)
