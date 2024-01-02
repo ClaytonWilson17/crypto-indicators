@@ -1,21 +1,28 @@
-from ta_api import make_api_get_request
-from get_api_key import get_env_variable
+from ta_api import *
 
 
-env_variable_name = "API_KEY"
-api_key = get_env_variable(env_variable_name)
+#print (get_supertrend("BNB/USDT"))
 
-indicator = "supertrend"
+#print (get_price_of_one_crypto("BNB/USDT"))
 
-api_url = "https://api.taapi.io/" + indicator
 
-params = {
-    'secret': api_key,
-    'exchange': 'binance',
-    'symbol': 'BTC/USDT',
-    'interval': '1h'
-}
+symbols = get_all_binance_symbols()
+symbols = symbols[0:80]
 
-response_data = make_api_get_request(api_url, params=params)
+symbols_more_than_10_cents = []
+for sym in symbols:
+    try:
+        if 'USDT' in sym:
+            price = get_price_of_one_crypto(sym)
+            #if price > .1:
+            symbols_more_than_10_cents.append(sym)
+    except:
+        None
 
-print(response_data)
+
+print (symbols_more_than_10_cents)
+
+
+
+
+
