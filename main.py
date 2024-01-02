@@ -18,9 +18,6 @@ for sym in symbols:
     except:
         None
 
-
-print (symbols_more_than_10_cents)
-
 crytos_to_buy = []
 for sym in symbols_more_than_10_cents:
     if (get_supertrend(sym, 12, 3)['valueAdvice']) == 'long':
