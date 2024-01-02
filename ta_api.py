@@ -1,9 +1,5 @@
 # retrieves all of the technical indicators needed to determine buy and sell signals
 
-
-import itertools
-import csv
-import pandas as pd
 import requests
 import time
 from get_api_key import get_env_variable
