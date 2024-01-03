@@ -32,10 +32,10 @@ def make_api_get_request(url, params=None):
         response = requests.get(url, params=api_key)
 
         if response.status_code == 200:
-            time.sleep(16)
+            time.sleep(4)
             return response.json()
         else:
-            time.sleep(16)
+            time.sleep(4)
             response.raise_for_status()
     except requests.exceptions.RequestException as e:
         print(f"Error making API request: {e}")
@@ -55,10 +55,10 @@ def get_price_of_one_crypto(symbol):
     print ("Getting price of " + str(symbol) + "\n")
     url = 'https://api.taapi.io/price?'
     params = {
-    'exchange': 'binance',
-    'symbol': symbol,
-    'interval': '1h',
-}
+        'exchange': 'binance',
+        'symbol': symbol,
+        'interval': '1h'
+    }
 
     response = make_api_get_request(url=url, params=params)
     response = response['value']
@@ -71,10 +71,39 @@ def get_supertrend(symbol, period, multiplier):
     params = {
         'exchange': 'binance',
         'symbol': symbol,
-        'interval': '15m',
+        'interval': '1h',
         'period': period,
         'multiplier': multiplier
     }
 
     response = make_api_get_request(url=url, params=params)
+    return response
+
+
+def get_EMA(symbol, period):
+    print ("Getting EMA of " + str(symbol) + "\n")
+    url = 'https://api.taapi.io/ema?'
+    params = {
+        'exchange': 'binance',
+        'symbol': symbol,
+        'interval': '1h',
+        'period': period,
+    }
+
+    response = make_api_get_request(url=url, params=params)
+    response = response['value']
+    return response
+
+
+def get_rsi(symbol):
+    print ("Getting RSI of " + str(symbol) + "\n")
+    url = 'https://api.taapi.io/rsi?'
+    params = {
+        'exchange': 'binance',
+        'symbol': symbol,
+        'interval': '1h',
+    }
+
+    response = make_api_get_request(url=url, params=params)
+    response = response['value']
     return response
