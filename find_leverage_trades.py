@@ -1,10 +1,7 @@
 from ta_api import *
 from send_discord_message import *
-
-
-#print (get_supertrend("BNB/USDT"))
-
-#print (get_price_of_one_crypto("BNB/USDT"))
+import time
+start_time = time.time()
 
 
 symbols = get_all_binance_symbols()
@@ -53,5 +50,5 @@ print (cryptos_to_buy)
 
 send_message(str(cryptos_to_buy))
 
-
+print("Elapsed time: ", time.time() - start_time)
 

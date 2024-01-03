@@ -91,8 +91,11 @@ def get_EMA(symbol, period):
     }
 
     response = make_api_get_request(url=url, params=params)
-    response = response['value']
-    return response
+    if response:
+        response = response['value']
+        return response
+    else:
+        return float(0)
 
 
 def get_rsi(symbol):
@@ -105,5 +108,8 @@ def get_rsi(symbol):
     }
 
     response = make_api_get_request(url=url, params=params)
-    response = response['value']
-    return response
+    if response:
+        response = response['value']
+        return response
+    else:
+        return float(99999999)
