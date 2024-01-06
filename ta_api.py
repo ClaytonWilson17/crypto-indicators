@@ -51,13 +51,13 @@ def get_all_binance_symbols():
     response = make_api_get_request(url=url, params=params)
     return response
 
-def get_price_of_one_crypto(symbol):
+def get_price_of_one_crypto(symbol, interval):
     print ("Getting price of " + str(symbol) + "\n")
     url = 'https://api.taapi.io/price?'
     params = {
         'exchange': 'binance',
         'symbol': symbol,
-        'interval': '1h'
+        'interval': interval
     }
 
     response = make_api_get_request(url=url, params=params)
@@ -65,51 +65,51 @@ def get_price_of_one_crypto(symbol):
     return response
 
 
-def get_supertrend(symbol, period, multiplier):
-    print ("Getting supertrend of " + str(symbol) + "\n")
-    url = 'https://api.taapi.io/supertrend?'
-    params = {
-        'exchange': 'binance',
-        'symbol': symbol,
-        'interval': '1h',
-        'period': period,
-        'multiplier': multiplier
-    }
 
-    response = make_api_get_request(url=url, params=params)
-    return response
-
-
-def get_EMA(symbol, period):
-    print ("Getting EMA of " + str(symbol) + "\n")
-    url = 'https://api.taapi.io/ema?'
-    params = {
-        'exchange': 'binance',
-        'symbol': symbol,
-        'interval': '1h',
-        'period': period,
-    }
-
-    response = make_api_get_request(url=url, params=params)
-    if response:
-        response = response['value']
-        return response
-    else:
-        return float(0)
-
-
-def get_rsi(symbol):
+def get_rsi(symbol, exchange):
     print ("Getting RSI of " + str(symbol) + "\n")
     url = 'https://api.taapi.io/rsi?'
     params = {
-        'exchange': 'binance',
+        'exchange': exchange,
         'symbol': symbol,
-        'interval': '1h',
+        'interval': '1d',
     }
 
     response = make_api_get_request(url=url, params=params)
     if response:
         response = response['value']
-        return response
-    else:
-        return float(99999999)
+        if response > 50.0:
+            return 'long'
+    
+    
+
+def get_macd_signal(symbol, exchange):
+    print ("Getting MACD of " + str(symbol) + "\n")
+    url = 'https://api.taapi.io/macd?'
+    params = {
+        'exchange': exchange,
+        'symbol': symbol,
+        'interval': '1d',
+    }
+    response = make_api_get_request(url=url, params=params)
+
+    if response:
+        response = response['valueMACDHist']
+        if response > 0.0:
+            return 'long'
+    
+
+def get_stoch(symbol, exchange):
+    print ("Getting Stochastic of " + str(symbol) + "\n")
+    url = 'https://api.taapi.io/stoch?'
+    params = {
+        'exchange': exchange,
+        'symbol': symbol,
+        'interval': '1d',
+        'kPeriod': 14
+    }
+    response = make_api_get_request(url=url, params=params)
+    if response:
+        response = response['valueK']
+        if response > 50.0:
+            return 'long'
