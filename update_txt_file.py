@@ -20,3 +20,12 @@ def update_list_in_file(new_list, file_path):
     print("List updated successfully.")
     
     return added_strings
+
+
+def read_txt_file(file_path):
+    # Read existing list from the file
+    try:
+        with open(file_path, 'r') as file:
+            return ([line.strip() for line in file.readlines()])
+    except FileNotFoundError:
+        return ([])

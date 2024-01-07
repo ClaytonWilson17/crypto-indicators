@@ -30,11 +30,12 @@ for sym in all_binance_symbols:
 
 file_path = 'coins_with_long_signal.txt'
 new_cryptos_to_trade = update_list_in_file(cryptos_to_trade, file_path)
-
+past_long_signals = read_txt_file(file_path)
 
 print (new_cryptos_to_trade)
 
-#send_message("A long signal was found for the following coins: \n" + str(new_cryptos_to_trade))
+send_message("A long signal was found for the following coins: \n" + str(new_cryptos_to_trade))
+send_message("Here is the list of coins that have received a long signal in the past and are still trending upward: \n" + str(past_long_signals))
 
 print("Elapsed time: ", time.time() - start_time)
 
