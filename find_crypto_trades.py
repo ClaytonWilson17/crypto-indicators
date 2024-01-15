@@ -34,7 +34,7 @@ past_long_signals = read_txt_file(file_path)
 
 print (new_cryptos_to_trade)
 
-send_message("A long signal was found for the following coins: \n" + str(new_cryptos_to_trade))
+send_message("A long signal (1 - 4 weeks) was found for the following coins: \n" + str(new_cryptos_to_trade))
 
 print("Elapsed time: ", time.time() - start_time)
 
