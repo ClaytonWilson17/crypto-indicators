@@ -33,7 +33,6 @@ def get_tech_indicators(NYSE_symbols, NASDAQ_symbols):
         if "^" in sym:
             sym = sym.replace("^", "")
         request = TA_Handler(screener='america', exchange='NASDAQ', symbol=sym, interval=Interval.INTERVAL_1_DAY)
-        request.add_indicators(indicators=["KltChnl.lower", "KltChnl.upper"])
         output = request.get_indicators()
         new_dict = {}
         new_dict['Symbol'] = sym
@@ -47,15 +46,6 @@ def get_tech_indicators(NYSE_symbols, NASDAQ_symbols):
         new_dict['MACD_line'] = output['MACD.macd']
         new_dict['MACD_signal'] = output['MACD.signal']
         new_dict['Stochastic'] = output['Stoch.D']
-        try:
-            new_dict['Keltner lower'] = output['KltChnl.lower']
-            new_dict['Keltner upper'] = output['KltChnl.upper']
-        except:
-            new_dict['Keltner lower'] = 10000000
-            new_dict['Keltner upper'] = 0
-
-        new_dict['Chart Link'] = 'https://finance.yahoo.com/quote/' + str(sym) + '/chart?p=' + str(sym)
-        
         stock_data.append(new_dict)
 
     for sym in NYSE_symbols:
@@ -68,7 +58,6 @@ def get_tech_indicators(NYSE_symbols, NASDAQ_symbols):
         if "^" in sym:
             sym = sym.replace("^", "")
         request = TA_Handler(screener='america', exchange='NYSE', symbol=sym, interval=Interval.INTERVAL_1_DAY)
-        request.add_indicators(indicators=["KltChnl.lower", "KltChnl.upper"])
         output = request.get_indicators()
         new_dict = {}
         new_dict['Symbol'] = sym
@@ -82,13 +71,6 @@ def get_tech_indicators(NYSE_symbols, NASDAQ_symbols):
         new_dict['MACD_line'] = output['MACD.macd']
         new_dict['MACD_signal'] = output['MACD.signal']
         new_dict['Stochastic'] = output['Stoch.D']
-        try:
-            new_dict['Keltner lower'] = output['KltChnl.lower']
-            new_dict['Keltner upper'] = output['KltChnl.upper']
-        except:
-            new_dict['Keltner lower'] = 10000000
-            new_dict['Keltner upper'] = 0
-        new_dict['Chart Link'] = 'https://finance.yahoo.com/quote/' + str(sym) + '/chart?' 
         
         stock_data.append(new_dict)
 
