@@ -19,22 +19,28 @@ for sym in symbols:
 
 #all_binance_symbols = all_binance_symbols[0:10]
 
-cryptos_to_trade = []
+cryptos_to_long = []
+cryptos_to_short = []
 for sym in all_binance_symbols:
     if 'long' == get_macd_signal(sym, "binance"):
         if 'long' == get_rsi(sym, "binance"):
             if 'long' == get_stoch(sym, "binance"):
                 print ('Adding ' + str(sym) + ' to list \n')
-                cryptos_to_trade.append(sym)
+                cryptos_to_long.append(sym)
+    if 'short' == get_macd_signal(sym, "binance"):
+        if 'short' == get_rsi(sym, "binance"):
+            if 'short' == get_stoch(sym, "binance"):
+                print ('Adding ' + str(sym) + ' to list \n')
+                cryptos_to_short.append(sym)
 
 
 file_path = 'coins_with_long_signal.txt'
-new_cryptos_to_trade = update_list_in_file(cryptos_to_trade, file_path)
+new_cryptos_to_long = update_list_in_file(cryptos_to_long, file_path)
 past_long_signals = read_txt_file(file_path)
 
-print (new_cryptos_to_trade)
+print (new_cryptos_to_long)
 
-send_message("A long signal (1 - 4 weeks) was found for the following coins: \n" + str(new_cryptos_to_trade))
+send_message("A long signal (1 - 4 weeks) was found for the following coins: \n" + str(new_cryptos_to_long) + "\n\nA short signal was found for the following coins: \n" + str(cryptos_to_short))
 
 print("Elapsed time: ", time.time() - start_time)
 

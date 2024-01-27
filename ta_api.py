@@ -80,6 +80,8 @@ def get_rsi(symbol, exchange):
         response = response['value']
         if response > 50.0:
             return 'long'
+        else:
+            return 'short'
     
     
 
@@ -97,6 +99,8 @@ def get_macd_signal(symbol, exchange):
         response = response['valueMACDHist']
         if response > 0.0:
             return 'long'
+        else:
+            return 'short'
     
 
 def get_stoch(symbol, exchange):
@@ -113,3 +117,5 @@ def get_stoch(symbol, exchange):
         response = response['valueK']
         if response > 50.0:
             return 'long'
+        else:
+            return 'short'
