@@ -1,0 +1,5 @@
+L
+NVDA
+MSFT
+AAPL
+AMD

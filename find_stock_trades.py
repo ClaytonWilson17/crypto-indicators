@@ -28,7 +28,11 @@ for stock in stocks:
     except:
         None
 
+file_path = 'stocks_with_long_signal.txt'
+new_stocks_to_long = update_list_in_file(stocks_to_long, file_path)
+past_long_signals = read_txt_file(file_path)
 
+print (new_stocks_to_long)
 
 
 

@@ -38,9 +38,17 @@ file_path = 'coins_with_long_signal.txt'
 new_cryptos_to_long = update_list_in_file(cryptos_to_long, file_path)
 past_long_signals = read_txt_file(file_path)
 
-print (new_cryptos_to_long)
+file_path = 'coins_with_short_signal.txt'
+new_cryptos_to_short = update_list_in_file(cryptos_to_short, file_path)
+past_short_signals = read_txt_file(file_path)
 
-send_message("A long signal (1 - 4 weeks) was found for the following coins: \n" + str(new_cryptos_to_long) + "\n\nA short signal was found for the following coins: \n" + str(cryptos_to_short))
+print ("Long:")
+print (new_cryptos_to_long)
+print ("Short:")
+print (cryptos_to_short)
+
+send_message("A long signal (1 - 3 weeks) was found for the following coins: \n" + str(new_cryptos_to_long))
+send_message("A short signal (1 - 3 weeks) was found for the following coins: \n" + str(cryptos_to_short))
 
 print("Elapsed time: ", time.time() - start_time)
 
