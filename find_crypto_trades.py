@@ -47,8 +47,11 @@ print (new_cryptos_to_long)
 print ("Short:")
 print (cryptos_to_short)
 
-send_message("A long signal (1 - 3 weeks) was found for the following coins: \n" + str(new_cryptos_to_long))
-send_message("A short signal (1 - 3 weeks) was found for the following coins: \n" + str(cryptos_to_short))
+if new_cryptos_to_long:
+    send_message("A long signal (1 - 3 weeks) was found for the following coins: \n" + str(new_cryptos_to_long))
+
+if new_cryptos_to_short:
+    send_message("A short signal (1 - 3 weeks) was found for the following coins: \n" + str(cryptos_to_short))
 
 print("Elapsed time: ", time.time() - start_time)
 
