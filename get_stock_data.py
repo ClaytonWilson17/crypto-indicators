@@ -28,51 +28,57 @@ def get_tech_indicators(NYSE_symbols, NASDAQ_symbols):
     # Get the data for all stocks
     print ("\nCollecting technical data for all stocks...\n")
     for sym in NASDAQ_symbols:
-        print ("Getting tech indicators for: " + str(sym))
-        # doesn't accept any symbols with "^"
-        if "^" in sym:
-            sym = sym.replace("^", "")
-        request = TA_Handler(screener='america', exchange='NASDAQ', symbol=sym, interval=Interval.INTERVAL_1_DAY)
-        output = request.get_indicators()
-        new_dict = {}
-        new_dict['Symbol'] = sym
-        new_dict['Price'] = output['close']
-        new_dict['RSI'] = output['RSI']
-        new_dict['Pivot middle'] = output['Pivot.M.Classic.Middle']
-        new_dict['Pivot support 1'] = output['Pivot.M.Classic.S1']
-        new_dict['Pivot support 2'] = output['Pivot.M.Classic.S2']
-        new_dict['Pivot resistance 1'] = output['Pivot.M.Classic.R1']
-        new_dict['Pivot resistance 2'] = output['Pivot.M.Classic.R2']
-        new_dict['MACD_line'] = output['MACD.macd']
-        new_dict['MACD_signal'] = output['MACD.signal']
-        new_dict['Stochastic'] = output['Stoch.D']
-        stock_data.append(new_dict)
+        try:
+            print ("Getting tech indicators for: " + str(sym))
+            # doesn't accept any symbols with "^"
+            if "^" in sym:
+                sym = sym.replace("^", "")
+            request = TA_Handler(screener='america', exchange='NASDAQ', symbol=sym, interval=Interval.INTERVAL_1_DAY)
+            output = request.get_indicators()
+            new_dict = {}
+            new_dict['Symbol'] = sym
+            new_dict['Price'] = output['close']
+            new_dict['RSI'] = output['RSI']
+            new_dict['Pivot middle'] = output['Pivot.M.Classic.Middle']
+            new_dict['Pivot support 1'] = output['Pivot.M.Classic.S1']
+            new_dict['Pivot support 2'] = output['Pivot.M.Classic.S2']
+            new_dict['Pivot resistance 1'] = output['Pivot.M.Classic.R1']
+            new_dict['Pivot resistance 2'] = output['Pivot.M.Classic.R2']
+            new_dict['MACD_line'] = output['MACD.macd']
+            new_dict['MACD_signal'] = output['MACD.signal']
+            new_dict['Stochastic'] = output['Stoch.D']
+            stock_data.append(new_dict)
+        except:
+            None
 
     for sym in NYSE_symbols:
-        print ("Getting tech indicators for: " + str(sym))
-        if sym == 'SPY':
-            exchange = 'AMEX'
-        else:
-            exchange = 'NYSE'
-        request = TA_Handler(screener='america', exchange=exchange, symbol=sym, interval=Interval.INTERVAL_1_DAY)
-        if "^" in sym:
-            sym = sym.replace("^", "")
-        request = TA_Handler(screener='america', exchange='NYSE', symbol=sym, interval=Interval.INTERVAL_1_DAY)
-        output = request.get_indicators()
-        new_dict = {}
-        new_dict['Symbol'] = sym
-        new_dict['Price'] = output['close']
-        new_dict['RSI'] = output['RSI']
-        new_dict['Pivot middle'] = output['Pivot.M.Classic.Middle']
-        new_dict['Pivot support 1'] = output['Pivot.M.Classic.S1']
-        new_dict['Pivot support 2'] = output['Pivot.M.Classic.S2']
-        new_dict['Pivot resistance 1'] = output['Pivot.M.Classic.R1']
-        new_dict['Pivot resistance 2'] = output['Pivot.M.Classic.R2']
-        new_dict['MACD_line'] = output['MACD.macd']
-        new_dict['MACD_signal'] = output['MACD.signal']
-        new_dict['Stochastic'] = output['Stoch.D']
-        
-        stock_data.append(new_dict)
+        try:
+            print ("Getting tech indicators for: " + str(sym))
+            if sym == 'SPY':
+                exchange = 'AMEX'
+            else:
+                exchange = 'NYSE'
+            request = TA_Handler(screener='america', exchange=exchange, symbol=sym, interval=Interval.INTERVAL_1_DAY)
+            if "^" in sym:
+                sym = sym.replace("^", "")
+            request = TA_Handler(screener='america', exchange='NYSE', symbol=sym, interval=Interval.INTERVAL_1_DAY)
+            output = request.get_indicators()
+            new_dict = {}
+            new_dict['Symbol'] = sym
+            new_dict['Price'] = output['close']
+            new_dict['RSI'] = output['RSI']
+            new_dict['Pivot middle'] = output['Pivot.M.Classic.Middle']
+            new_dict['Pivot support 1'] = output['Pivot.M.Classic.S1']
+            new_dict['Pivot support 2'] = output['Pivot.M.Classic.S2']
+            new_dict['Pivot resistance 1'] = output['Pivot.M.Classic.R1']
+            new_dict['Pivot resistance 2'] = output['Pivot.M.Classic.R2']
+            new_dict['MACD_line'] = output['MACD.macd']
+            new_dict['MACD_signal'] = output['MACD.signal']
+            new_dict['Stochastic'] = output['Stoch.D']
+            
+            stock_data.append(new_dict)
+        except:
+            None
 
 
     # Dictionary keys: ['Recommend.Other', 'Recommend.All', 'Recommend.MA', 'RSI', 'RSI[1]', 'Stoch.K', 'Stoch.D', 'Stoch.K[1]', 'Stoch.D[1]', 'CCI20', 'CCI20[1]', 
