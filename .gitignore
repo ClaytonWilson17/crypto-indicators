@@ -1,2 +1,6 @@
 .env
 **_pycache**
+**stocks_with_long_signal.txt**
+**coins_with_long_signal.txt**
+**coins_with_short_signal.txt**
+**stocks_with_short_signal.txt**
