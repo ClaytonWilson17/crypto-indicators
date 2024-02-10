@@ -20,7 +20,7 @@ def make_api_get_request(url, params=None):
     Returns:
     - dict: JSON response from the API.
     """
-
+    time.sleep(4)
     env_variable_name = "API_KEY"
     api_key = {
         'secret': get_env_variable(env_variable_name)
@@ -32,10 +32,8 @@ def make_api_get_request(url, params=None):
         response = requests.get(url, params=api_key)
 
         if response.status_code == 200:
-            time.sleep(4)
             return response.json()
         else:
-            time.sleep(4)
             response.raise_for_status()
     except requests.exceptions.RequestException as e:
         print(f"Error making API request: {e}")
