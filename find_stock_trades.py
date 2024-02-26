@@ -75,7 +75,14 @@ new_stocks_to_long = update_list_in_file(stocks_to_long, file_path)
 past_long_signals = read_txt_file(file_path)
 
 print (new_stocks_to_long)
+if new_stocks_to_long:
+    send_message("A long signal (1 - 3 weeks) was found for the following stocks: \n" + str(new_stocks_to_long))
 
+print ("Waiting for 30 minutes to run again")
+
+time.sleep(1800)
+
+print ("Done waiting")
 
 
 
